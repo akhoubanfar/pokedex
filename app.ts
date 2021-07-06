@@ -36,12 +36,14 @@ app.get("/", (req: express.Request, res: express.Response) => {
   res.status(200).send(runningMessage);
 });
 
-server.listen(port, () => {
-  routes.forEach((route: BaseRoutesConfig) => {
-    debugLog(`Routes configured for ${route.getName()}`);
-  });
+if (process.env.NODE_ENV !== "test") {
+  server.listen(port, () => {
+    routes.forEach((route: BaseRoutesConfig) => {
+      debugLog(`Routes configured for ${route.getName()}`);
+    });
 
-  console.log(runningMessage);
-});
+    console.log(runningMessage);
+  });
+}
 
 export { app };

@@ -6,7 +6,7 @@
   "scripts": {
     "start": "tsc && node --unhandled-rejections=strict ./dist/app.js",
     "debug": "SET DEBUG=* && npm run start",
-    "test": "jest --watchAll --no-cache"
+    "test": "jest --forceExit --detectOpenHandles  --watchAll --maxWorkers=1"
   },
   "jest": {
     "preset": "ts-jest",

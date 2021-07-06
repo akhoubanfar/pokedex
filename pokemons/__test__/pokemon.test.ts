@@ -17,7 +17,7 @@ it("returns the pokemon if the pokemon is found", async () => {
   expect(response.body.name).toEqual(name);
 });
 
-it("returns the shakespeare translation if the pokemon is found", async () => {
+it("returns the yoda translation if the pokemon is found", async () => {
   const name = "mewtwo";
 
   const response = await request(app)
