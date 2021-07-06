@@ -1,4 +1,4 @@
-# pokedex
+# Pokedex
 
 How to run Pokedex API :
 
