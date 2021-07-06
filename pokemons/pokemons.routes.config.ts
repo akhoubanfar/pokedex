@@ -14,12 +14,7 @@ export class PokemonsRoutes extends BaseRoutesConfig {
 
     this.app
       .route(`/pokemons/translated/:pokemonName`)
-
-      .get((req: express.Request, res: express.Response) => {
-        res
-          .status(200)
-          .send(`GET request with translation for ${req.params.pokemonName}`);
-      });
+      .get(PokemonControllers.getPokemonByNameWithTranslation);
 
     return this.app;
   }

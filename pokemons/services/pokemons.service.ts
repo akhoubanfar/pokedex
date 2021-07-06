@@ -4,24 +4,57 @@ import { PokemonDto } from "../models/pokemon.dto";
 
 class PokemonsService implements Pokemon {
   async getByName(pokemonName: string) {
-    const baseURL = `https://pokeapi.co/api/v2/pokemon-species/${pokemonName}`;
-    const response = await axios.get(baseURL);
-    const { name, flavor_text_entries, habitat, is_legendary } = response.data;
+    try {
+      const baseURL = `https://pokeapi.co/api/v2/pokemon-species/${pokemonName}`;
+      const response = await axios.get(baseURL);
 
-    const pokemonDto: PokemonDto = {
-      name: name,
-      description: flavor_text_entries.find(
-        (des: any) => des.language.name === "en"
-      ).flavor_text,
-      habitat: habitat.name,
-      legendary: is_legendary,
-    };
+      const { name, flavor_text_entries, habitat, is_legendary } =
+        response!.data;
 
-    return pokemonDto;
+      const pokemonDto: PokemonDto = {
+        name: name,
+        description: flavor_text_entries.find(
+          (des: any) => des.language.name === "en"
+        ).flavor_text,
+        habitat: habitat.name,
+        legendary: is_legendary,
+      };
+
+      return pokemonDto;
+    } catch (err) {
+      return;
+    }
   }
 
-  async getByNameWithTranslation(id: string) {
-    return {};
+  async getByNameWithTranslation(pokemonName: string) {
+    try {
+      const pokemonDto = await this.getByName(pokemonName);
+      const baseURL = "https://api.funtranslations.com/translate";
+
+      var translation: any;
+
+      if (
+        pokemonDto!.legendary ||
+        pokemonDto!.habitat?.toLowerCase() === "cave"
+      ) {
+        translation = await axios.post(`${baseURL}/yoda`, {
+          text: pokemonDto!.description,
+        });
+      } else {
+        translation = await axios.post(`${baseURL}/shakespeare`, {
+          text: pokemonDto!.description,
+        });
+      }
+
+      pokemonDto!.description =
+        translation.data.contents.translation +
+        "::" +
+        translation.data.contents.translated;
+
+      return pokemonDto;
+    } catch (err) {
+      return;
+    }
   }
 }
 
