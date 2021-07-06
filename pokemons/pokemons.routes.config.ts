@@ -1,5 +1,6 @@
 import express from "express";
 import { BaseRoutesConfig } from "../common/base.routes.config";
+import PokemonControllers from "./controllers/pokemons.controllers";
 
 export class PokemonsRoutes extends BaseRoutesConfig {
   constructor(app: express.Application) {
@@ -9,10 +10,7 @@ export class PokemonsRoutes extends BaseRoutesConfig {
   configureRoutes() {
     this.app
       .route("/pokemons/:pokemonName")
-
-      .get((req: express.Request, res: express.Response) => {
-        res.status(200).send(`GET request for ${req.params.pokemonName}`);
-      });
+      .get(PokemonControllers.getPokemonByName);
 
     this.app
       .route(`/pokemons/translated/:pokemonName`)
