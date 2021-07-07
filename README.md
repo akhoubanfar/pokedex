@@ -4,9 +4,11 @@ Pokedex using the PokeAPI for constructing RESTful API.
 
  # Sample Urls:
 http://localhost:5000/pokemons/{pokemonName}
+
 http://localhost:5000/pokemons/mewtwo
 
 http://localhost:5000/pokemons/translated/{pokemonName}
+
 http://localhost:5000/pokemons/translated/charmander
 
 
