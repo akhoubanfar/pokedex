@@ -1,16 +1,17 @@
 # Pokedex
 
- Sample Urls:
+Pokedex using the PokeAPI for constructing RESTful API.
+
+ # Sample Urls:
 
 http://localhost:5000/pokemons/mewtwo
 
 http://localhost:5000/pokemons/translated/mewtwo
 
 
----
 
 
-How to run Pokedex API :
+# How to run Pokedex API :
 
  Running the application : "npm start"
 
@@ -18,9 +19,8 @@ How to run Pokedex API :
 
  Running the test cases : "npm test"
 
----
 
-How to run Pokedex API with docker:
+# How to run Pokedex API with docker:
 
  $ "docker build -t pokedex  . "
 
