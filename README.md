@@ -1,5 +1,15 @@
 # Pokedex
 
+ Sample Urls:
+
+http://localhost:5000/pokemons/mewtwo
+
+http://localhost:5000/pokemons/translated/mewtwo
+
+
+---
+
+
 How to run Pokedex API :
 
 Running the application : "npm start"
